@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'https://powerful-ridge-40349.herokuapp.com/api/notes'
+const baseUrl = '/api/notes'
 
 const getAll = () => {
   const request = axios.get(baseUrl)
@@ -27,9 +27,10 @@ const del = (id) => {
    return request
 }
 
-export default { 
+const exp = { 
   getAll, 
   create, 
   update,
   del
 }
+export default exp
