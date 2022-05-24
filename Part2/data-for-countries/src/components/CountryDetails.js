@@ -1,10 +1,11 @@
 import axios from "axios";
+
 import { useEffect,useState } from "react";
 import Languages from "./Languages"
 const CountryDetails =({country})=> {
     const [weather,setWeather]= useState(null)
 
-    const api_key = "40d116edb52a21ac68871aa091eadb5c"
+    const api_key = process.env.REACT_APP_API_KEY
 
     useEffect(() =>{
         axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${country.capital}&appid=${api_key}&units=metric`)
