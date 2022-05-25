@@ -64,8 +64,9 @@ const App = () => {
             }, 4000);
           })
           .catch((error) => {
+            console.log(error.response.data)
             setNotification({
-              text: `failed to edit '${editedPerson.name}'. it has already been removed from server!`,
+              text: error.response.data.error,
               status: "error",
             });
             setTimeout(() => {
@@ -79,7 +80,8 @@ const App = () => {
           });
       }
     } else {
-      contactsService.create(personObject).then((returnedList) => {
+      contactsService.create(personObject)
+      .then((returnedList) => {
         setPersons(persons.concat(returnedList));
         setNotification({
           text: `successfully added '${returnedList.name}'`,
@@ -93,7 +95,22 @@ const App = () => {
         }, 4000);
         setNewName("");
         setNewNumber("");
-      });
+      })
+      .catch(error => {
+        console.log(error.response.data)
+        setNotification({
+          text: error.response.data.error,
+          status: "error",
+        });
+        setTimeout(() => {
+          setNotification({
+            text: "",
+            status: "null",
+          });
+          setNewName("");
+          setNewNumber("");
+        }, 4000);
+      })
     }
   };
 

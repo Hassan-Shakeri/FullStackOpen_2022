@@ -10,14 +10,14 @@ const NewContact = ({addPerson,newName,newNumber,handleNameChange,handleNumberCh
         <h2>Add new contact</h2>
         <div>
             Name:
-            <input type="text" value={newName} onChange={handleNameChange} />
+            <input type="text" placeholder='name...' value={newName} onChange={handleNameChange} />
         </div>
         <div>
             Number:
-            <input type="text" value={newNumber} onChange={handleNumberChange} />
+            <input type="text" placeholder='xxx-xxx-xxxx' value={newNumber} onChange={handleNumberChange} />
         </div>
         <div>
-            <button style={addbtn} type="submit">add</button>
+            <button style={addbtn} type="submit">Add</button>
         </div>
   </form>  )
 }
