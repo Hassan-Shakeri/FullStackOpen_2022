@@ -66,6 +66,14 @@ const App = () => {
         setNotes(notes.concat(returnedNote))
         setNewNote('')
       })
+      .catch(error => {
+        console.log(error.response.data)
+        setErrorMessage(error.response.data.error)
+        setTimeout(() => {
+          setNewNote("");
+          setErrorMessage("");
+        }, 4000);
+      })
 
   }
 
