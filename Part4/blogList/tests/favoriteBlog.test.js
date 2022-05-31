@@ -1,5 +1,5 @@
 const listHelper = require ('../utils/list_helper')
-const {listWithMoreBlogs,listWithOneBlog,listWithNoBlog} = require ('./likes.test')
+const {listWithMoreBlogs,listWithOneBlog,listWithNoBlog} = require ('../utils/list_helper')
 
 
 describe('most favorite blog', ()=>{
