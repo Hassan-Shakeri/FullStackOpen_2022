@@ -99,15 +99,35 @@ const favoriteBlog = (blogs) => {
 
 
 const mostBlogs = (blogs) => {
-  const most =(blog)=>{return blog.author} 
-  const myArray = _.groupBy(blogs, most)
+  const author =(blog)=>{return blog.author} 
+  const myArray = _.groupBy(blogs, author)
   const authorBlogLength = _.mapValues(myArray, (obj) => obj.length)
+  // turning the obj into an arr
   const entryArr = Object.entries(authorBlogLength)
   const maxblog = _.maxBy(entryArr, (obj) => obj)
   const result = {
       author: maxblog[0],
       blogs: maxblog[1]
   }
+  return result
+}
+
+
+const mostLikes = (blogs) => {
+    const author = (blog)=>{return blog.author} 
+    const myArray = _.groupBy(blogs, author)
+    const authorBloglikes = _.mapValues(myArray, (arr) => {
+            const total = _.reduce(arr,(acc,blog)=>{
+            return acc + blog.likes
+        },0)
+        return total
+    })
+      // turning the obj into an arr
+    const entryArr = Object.entries(authorBloglikes).reduce((a,b) => a[1] > b[1] ? a : b)
+    const result = {
+        author: entryArr[0],
+        likes: entryArr[1]
+    }
   return result
 }
 
@@ -119,6 +139,7 @@ const mostBlogs = (blogs) => {
     totalLikes,
     favoriteBlog,
     mostBlogs,
+    mostLikes,
     listWithNoBlog,
     listWithOneBlog,
     listWithMoreBlogs
